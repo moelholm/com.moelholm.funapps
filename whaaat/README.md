@@ -2,7 +2,7 @@
 
 This application contains a Web service that can receive uploaded WAV files (sound clips) and play them. 
 
-It runs as a fat JAR file - meaning that you don't have to run any application server or the like. Just run the JAR using the usual syntax: `java -jar whaaat-*.jar`. Then invoke the RESTfule Web service operations using a RESTful client tool of your choice. Examples below uses the`curl` tool for that.
+It runs as a fat JAR file - meaning that you don't have to run any application server or the like. Just run the JAR using the usual syntax: `java -jar whaaat-*.jar`. Then invoke the "RESTful" Web service operations using a RESTful client tool of your choice. Examples below uses the`curl` tool for that.
 
 ### BUILD and RUN  ( development mode )
 
