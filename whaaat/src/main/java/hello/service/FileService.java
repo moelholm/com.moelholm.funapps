@@ -5,8 +5,11 @@ import hello.StringResultHelper;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FilenameFilter;
-import java.util.Arrays;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,20 +50,21 @@ public class FileService {
     }
 
     public String listFileNamesUsingCommaSeparatedList(String endsWith) {
-        
-        // TODO Do it the Java 8 way ...
 
-        final String normalizedEndsWithPart = endsWith.toLowerCase();
+        logger.info("Listing files that ends with: {}", endsWith);
 
-        logger.info("Listing files that ends with: {}", normalizedEndsWithPart);
+        return listPaths() //
+                .filter(path -> path.toString().toLowerCase().endsWith(endsWith.toLowerCase())) //
+                .map(path -> path.toFile().getName()) //
+                .collect(Collectors.toList()) //
+                .toString();
+    }
 
-        String[] listFiles = new File(System.getProperty("user.dir")).list(new FilenameFilter() {
-            @Override
-            public boolean accept(File file, String name) {
-                return name.endsWith(normalizedEndsWithPart);
-            }
-        });
-
-        return Arrays.toString(listFiles);
+    private Stream<Path> listPaths() {
+        try {
+            return Files.list(new File(".").toPath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
