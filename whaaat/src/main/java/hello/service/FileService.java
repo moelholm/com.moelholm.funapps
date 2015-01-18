@@ -24,7 +24,7 @@ public class FileService {
 
     public String save(String fileName, MultipartFile file) {
 
-        logger.debug("about to save: {}", fileName);
+        logger.debug("About to save: {}", fileName);
 
         if (file.isEmpty()) {
             return resultHelper.toErrorResponse(String.format("Empty file", fileName));
@@ -34,13 +34,13 @@ public class FileService {
             return resultHelper.toErrorResponse(String.format("File exists", fileName));
         }
 
-        logger.info("saving {}", fileName);
+        logger.info("Saving: {}", fileName);
 
         try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(fileName))) {
             stream.write(file.getBytes());
             return resultHelper.successResponse();
         } catch (Exception e) {
-            logger.error(String.format("Failed to save file: %s", fileName), e);
+            logger.error("Failed to save file: {}", fileName, e);
             return resultHelper.toErrorResponse(e);
         }
 
@@ -52,7 +52,7 @@ public class FileService {
 
         final String normalizedEndsWithPart = endsWith.toLowerCase();
 
-        logger.info("listing files that ends with: {}", normalizedEndsWithPart);
+        logger.info("Listing files that ends with: {}", normalizedEndsWithPart);
 
         String[] listFiles = new File(System.getProperty("user.dir")).list(new FilenameFilter() {
             @Override

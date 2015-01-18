@@ -25,7 +25,7 @@ public class SoundService {
 
     public String playSound(String clipName) {
 
-        logger.debug("about to play: {}", clipName);
+        logger.debug("About to play: {}", clipName);
 
         File clipFile = new File(clipName);
 
@@ -33,7 +33,7 @@ public class SoundService {
             return resultHelper.toErrorResponse(String.format("File could not be found: %s", clipName));
         }
 
-        logger.info("playing {}", clipName);
+        logger.info("Playing {}", clipName);
 
         return playWav(clipFile);
 
