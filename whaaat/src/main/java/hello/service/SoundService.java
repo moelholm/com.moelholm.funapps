@@ -54,7 +54,7 @@ public class SoundService {
             clip.start();
             return resultHelper.successResponse();
         } catch (Exception e) {
-            logger.error(String.format("Failed to play sound clip: %s", clipFile), e);
+            logger.error("Failed to play sound clip: {}", clipFile, e);
             return resultHelper.toErrorResponse(e);
         }
     }
