@@ -38,7 +38,7 @@ public class RootController {
         usage.append("  uploadfile             : POST : upload a file as multipart/form-data ( use propertyname 'file' )\n");
         return usage.toString();
     }
-    
+
     /**
      * Upload single file using Spring Controller
      */
@@ -62,9 +62,8 @@ public class RootController {
         return fileService.save(name, file);
     }
 
-    @ResponseBody
     @RequestMapping("/playsound/{clip}")
-    public String whaaat(@PathVariable("clip") String clip) {
+    public @ResponseBody String whaaat(@PathVariable("clip") String clip) {
 
         if (!clip.endsWith(EXTENSION_WAV)) {
             clip = clip + EXTENSION_WAV;
