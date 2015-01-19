@@ -39,17 +39,11 @@ public class RootController {
         return usage.toString();
     }
 
-    /**
-     * Upload single file using Spring Controller
-     */
     @RequestMapping("/listsounds")
     public @ResponseBody String listSounds() {
         return fileService.listFileNamesUsingCommaSeparatedList(EXTENSION_WAV);
     }
 
-    /**
-     * Upload single file using Spring Controller
-     */
     @RequestMapping(value = "/uploadfile", method = RequestMethod.POST)
     public @ResponseBody String uploadFileHandler(@RequestParam("file") MultipartFile file) {
 
