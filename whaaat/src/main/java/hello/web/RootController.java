@@ -44,7 +44,7 @@ public class RootController {
      */
     @RequestMapping("/listsounds")
     public @ResponseBody String listSounds() {
-        return fileService.listFileNamesUsingCommaSeparatedList(".wav");
+        return fileService.listFileNamesUsingCommaSeparatedList(EXTENSION_WAV);
     }
 
     /**
@@ -56,7 +56,7 @@ public class RootController {
         String name = file.getOriginalFilename();
 
         if (!name.endsWith(EXTENSION_WAV)) {
-            return resultHelper.toErrorResponse(String.format("Not a .wav file: %s", name));
+            return resultHelper.toErrorResponse(String.format("Not a %s file: %s", EXTENSION_WAV, name));
         }
 
         return fileService.save(name, file);
