@@ -38,7 +38,7 @@ public class RootController {
         usage.append("Usage: http://[host]:[port]/[command].\n\n");
         usage.append("  Where [command] is one of:\n\n");
         usage.append("  listsounds             : GET  : list all sound files\n");
-        usage.append("  playsound/[clip]       : GET  : play a sound\n");
+        usage.append("  playsound/[file]       : GET  : play a sound\n");
         usage.append("  addsound               : POST : upload a sound file as multipart/form-data ( use propertyname 'file' )\n");
         return usage.toString();
 
