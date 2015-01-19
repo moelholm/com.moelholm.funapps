@@ -24,7 +24,7 @@ It runs as a fat JAR file - meaning that you don't have to run any application s
 1) START APP : `java -jar whaaat-*.jar`   
 	( Java 8 )
 
-2) UPLOAD    : `curl localhost:8080/uploadfile --form file=@/path/to/sound.wav`
+2) UPLOAD    : `curl localhost:8080/addsound --form file=@/path/to/sound.wav`
 
 3) PLAY      : `curl localhost:8080/playsound/sound.wav`
 

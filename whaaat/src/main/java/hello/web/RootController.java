@@ -27,16 +27,21 @@ public class RootController {
     @Autowired
     private StringResultHelper resultHelper;
 
-    @ResponseBody
     @RequestMapping("/")
-    public String home() {
+    public @ResponseBody String home() {
+        return help();
+    }
+
+    @RequestMapping("/help")
+    public @ResponseBody String help() {
         StringBuilder usage = new StringBuilder();
         usage.append("Usage: http://[host]:[port]/[command].\n\n");
         usage.append("  Where [command] is one of:\n\n");
         usage.append("  listsounds             : GET  : list all sound files\n");
         usage.append("  playsound/[clip]       : GET  : play a sound\n");
-        usage.append("  uploadfile             : POST : upload a file as multipart/form-data ( use propertyname 'file' )\n");
+        usage.append("  addsound               : POST : upload a sound file as multipart/form-data ( use propertyname 'file' )\n");
         return usage.toString();
+
     }
 
     @RequestMapping("/listsounds")
@@ -44,8 +49,8 @@ public class RootController {
         return fileService.listFileNamesUsingCommaSeparatedList(EXTENSION_WAV);
     }
 
-    @RequestMapping(value = "/uploadfile", method = RequestMethod.POST)
-    public @ResponseBody String uploadFileHandler(@RequestParam("file") MultipartFile file) {
+    @RequestMapping(value = "/addsound", method = RequestMethod.POST)
+    public @ResponseBody String addSound(@RequestParam("file") MultipartFile file) {
 
         String name = file.getOriginalFilename();
 
@@ -57,7 +62,7 @@ public class RootController {
     }
 
     @RequestMapping("/playsound/{clip}")
-    public @ResponseBody String whaaat(@PathVariable("clip") String clip) {
+    public @ResponseBody String playSound(@PathVariable("clip") String clip) {
 
         if (!clip.endsWith(EXTENSION_WAV)) {
             clip = clip + EXTENSION_WAV;
