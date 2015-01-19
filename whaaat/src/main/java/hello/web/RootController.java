@@ -55,7 +55,7 @@ public class RootController {
         String name = file.getOriginalFilename();
 
         if (!name.endsWith(EXTENSION_WAV)) {
-            return resultHelper.toErrorResponse(String.format("Not a %s file: %s", EXTENSION_WAV, name));
+            return resultHelper.errorResponse(String.format("Not a %s file: %s", EXTENSION_WAV, name));
         }
 
         return fileService.save(name, file);

@@ -16,11 +16,11 @@ public class StringResultHelper {
         return String.format("%s: %s", successResponse(), message);
     }
 
-    public String toErrorResponse(String message) {
+    public String errorResponse(String message) {
         return String.format("error: %s", message);
     }
 
-    public String toErrorResponse(Exception e) {
-        return toErrorResponse(e.toString());
+    public String errorResponse(Exception e) {
+        return errorResponse(e.toString());
     }
 }

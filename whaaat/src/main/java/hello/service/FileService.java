@@ -30,11 +30,11 @@ public class FileService {
         logger.debug("About to save: {}", fileName);
 
         if (file.isEmpty()) {
-            return resultHelper.toErrorResponse(String.format("Empty file", fileName));
+            return resultHelper.errorResponse(String.format("Empty file", fileName));
         }
 
         if (new File(fileName).exists()) {
-            return resultHelper.toErrorResponse(String.format("File exists", fileName));
+            return resultHelper.errorResponse(String.format("File exists", fileName));
         }
 
         logger.info("Saving: {}", fileName);
@@ -44,7 +44,7 @@ public class FileService {
             return resultHelper.successResponse();
         } catch (Exception e) {
             logger.error("Failed to save file: {}", fileName, e);
-            return resultHelper.toErrorResponse(e);
+            return resultHelper.errorResponse(e);
         }
 
     }

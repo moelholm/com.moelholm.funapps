@@ -30,7 +30,7 @@ public class SoundService {
         File clipFile = new File(clipName);
 
         if (!clipFile.exists()) {
-            return resultHelper.toErrorResponse(String.format("File could not be found: %s", clipName));
+            return resultHelper.errorResponse(String.format("File could not be found: %s", clipName));
         }
 
         logger.info("Playing {}", clipName);
@@ -55,7 +55,7 @@ public class SoundService {
             return resultHelper.successResponse();
         } catch (Exception e) {
             logger.error("Failed to play sound clip: {}", clipFile, e);
-            return resultHelper.toErrorResponse(e);
+            return resultHelper.errorResponse(e);
         }
     }
 }
