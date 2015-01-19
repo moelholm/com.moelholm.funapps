@@ -61,13 +61,13 @@ public class RootController {
         return fileService.save(name, file);
     }
 
-    @RequestMapping("/playsound/{clip}")
-    public @ResponseBody String playSound(@PathVariable("clip") String clip) {
+    @RequestMapping("/playsound/{sound}")
+    public @ResponseBody String playSound(@PathVariable("sound") String sound) {
 
-        if (!clip.endsWith(EXTENSION_WAV)) {
-            clip = clip + EXTENSION_WAV;
+        if (!sound.endsWith(EXTENSION_WAV)) {
+            sound = sound + EXTENSION_WAV;
         }
 
-        return soundService.playSound(clip);
+        return soundService.playSound(sound);
     }
 }
